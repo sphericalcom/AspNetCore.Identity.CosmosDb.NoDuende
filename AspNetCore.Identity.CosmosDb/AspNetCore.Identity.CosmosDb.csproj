@@ -9,7 +9,7 @@
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>Cosmos, CosmosDB, Identity, Provider, AspNetCore, Membership, Roles, AspNetCore.Identity, AspNetCore.Identity.CosmosDb, Microsoft.AspNetCore.Identity, aspnet, efcore</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>AspNetCore.Identity.CosmosDb</PackageId>
+    <PackageId>AspNetCore.Identity.CosmosDb.NoDuende</PackageId>
     <RepositoryUrl>https://github.com/CosmosSoftware/AspNetCore.Identity.CosmosDb</RepositoryUrl>
     <PackageProjectUrl>https://github.com/CosmosSoftware/AspNetCore.Identity.CosmosDb</PackageProjectUrl>
     <PackageIcon>nuget-icon.png</PackageIcon>
@@ -28,6 +28,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="EntityConfigurations\DeviceFlowCodesEntityTypeConfiguration.cs" />
+    <Compile Remove="EntityConfigurations\PersistedGrantEntityTypeConfiguration.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Cosmos" Version="8.0.6" />
@@ -35,7 +40,6 @@
   
   <ItemGroup>
     <Content Include="_res\icons\nuget-icon.ico" />
-    <PackageReference Include="Duende.IdentityServer.EntityFramework.Storage" Version="7.0.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
@@ -44,6 +48,8 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Include="EntityConfigurations\DeviceFlowCodesEntityTypeConfiguration.cs" />
+    <None Include="EntityConfigurations\PersistedGrantEntityTypeConfiguration.cs" />
     <None Include="_res\icons\nuget-icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>

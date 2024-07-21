@@ -1,10 +1,12 @@
 ﻿using AspNetCore.Identity.CosmosDb.Contracts;
 using AspNetCore.Identity.CosmosDb.Repositories;
-using IdentityModel;
+
+// using IdentityModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Serialization.HybridRow;
 using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Buffers.Text;
 using System.Collections.Generic;
@@ -255,7 +257,6 @@ namespace AspNetCore.Identity.CosmosDb.Stores
             return Task.FromResult(
                 GetUserProperty(user, user => user.PhoneNumberConfirmed, cancellationToken));
         }
-
 
         // <inheritdoc />
         public Task<string> GetUserIdAsync(TUserEntity user, CancellationToken cancellationToken = default)
@@ -547,7 +548,6 @@ namespace AspNetCore.Identity.CosmosDb.Stores
                 await _repo.Table<IdentityUserLogin<TKey>>().SingleOrDefaultAsync(l =>
                     l.LoginProvider == loginProvider && l.ProviderKey == providerKey);
 
-
             return user is null
                 ? default(TUserEntity)
                 : await FindByIdAsync(user.UserId?.ToString(), cancellationToken);
@@ -797,7 +797,7 @@ namespace AspNetCore.Identity.CosmosDb.Stores
             return Task.CompletedTask;
         }
 
-        #endregion
+        #endregion IUserLockoutStore methods
 
         #region methods implementing IUserClaimStore<TUserEntity>
 
@@ -842,7 +842,6 @@ namespace AspNetCore.Identity.CosmosDb.Stores
                     {
                         nextId = 1;
                     }
-
                 }
                 catch (Exception e)
                 {
@@ -928,7 +927,7 @@ namespace AspNetCore.Identity.CosmosDb.Stores
             return (IList<TUserEntity>)users;
         }
 
-        #endregion
+        #endregion methods implementing IUserClaimStore<TUserEntity>
 
         #region Methods implementing IUserSecurityStampStore<TUserEntity> interface
 
@@ -958,7 +957,7 @@ namespace AspNetCore.Identity.CosmosDb.Stores
                 GetUserProperty(user, user => user.SecurityStamp, cancellationToken));
         }
 
-        #endregion
+        #endregion Methods implementing IUserSecurityStampStore<TUserEntity> interface
 
         #region Methods that implement IUserTwoFactorStore<TUserEntity>
 
@@ -986,7 +985,7 @@ namespace AspNetCore.Identity.CosmosDb.Stores
                 GetUserProperty(user, user => user.TwoFactorEnabled, cancellationToken));
         }
 
-        #endregion
+        #endregion Methods that implement IUserTwoFactorStore<TUserEntity>
 
         #region Methods implementing IUserAuthenticatorKeyStore<TUserEntity> interface
 
@@ -1078,7 +1077,6 @@ namespace AspNetCore.Identity.CosmosDb.Stores
             return await GetTokenAsync(user, InternalLoginProvider, AuthenticatorKeyTokenName, cancellationToken);
         }
 
-
         private async Task<string> GetTokenAsync(TUserEntity user, string provider, string tokenName,
             CancellationToken cancellationToken)
         {
@@ -1114,7 +1112,7 @@ namespace AspNetCore.Identity.CosmosDb.Stores
             }
         }
 
-        #endregion
+        #endregion Methods implementing IUserAuthenticatorKeyStore<TUserEntity> interface
 
         #region Methods that implement IUserTwoFactorRecoveryCodeStore<TUserEntity>
 
@@ -1155,7 +1153,6 @@ namespace AspNetCore.Identity.CosmosDb.Stores
             return false;
         }
 
-
         // <inheritdoc />
         public async Task<int> CountCodesAsync(TUserEntity user, CancellationToken cancellationToken)
         {
@@ -1177,6 +1174,6 @@ namespace AspNetCore.Identity.CosmosDb.Stores
             return 0;
         }
 
-        #endregion
+        #endregion Methods that implement IUserTwoFactorRecoveryCodeStore<TUserEntity>
     }
 }

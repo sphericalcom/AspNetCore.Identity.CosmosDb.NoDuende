@@ -21,8 +21,8 @@ namespace AspNetCore.Identity.CosmosDb.Extensions
             builder.ApplyConfiguration(new UserTokensEntityTypeConfiguration<TKey> { });
             // The following may required a license for production.
             // See: https://modlogix.com/blog/identityserver4-alternatives-best-options-and-the-near-future-of-identityserver/
-            builder.ApplyConfiguration(new DeviceFlowCodesEntityTypeConfiguration { });
-            builder.ApplyConfiguration(new PersistedGrantEntityTypeConfiguration { });
+            //builder.ApplyConfiguration(new DeviceFlowCodesEntityTypeConfiguration { });
+            //builder.ApplyConfiguration(new PersistedGrantEntityTypeConfiguration { });
 
             return builder;
         }
